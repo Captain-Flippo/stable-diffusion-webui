@@ -24,7 +24,7 @@ Resources:
       BlockDeviceMappings:
         - DeviceName: /dev/sda1
           Ebs:
-            VolumeSize: 30
+            VolumeSize: 100
             VolumeType: gp2
       "Tags" : [
             {"Key" : "Name", "Value" : "sd-web-ui-cf"},
@@ -36,7 +36,9 @@ Resources:
             #!/bin/bash
             cd /home/ubuntu
             git clone -b feat/basic-aws-setup https://github.com/Captain-Flippo/stable-diffusion-webui-on-aws.git
-            source stable-diffusion-webui-on-aws.git/setup.sh
+            cd stable-diffusion-webui-on-aws
+            bash setup.sh
+            bash webui.sh
   MyEIP:
     Type: AWS::EC2::EIP
   MyEIPAssociation:
