@@ -5,7 +5,7 @@ Resources:
   SecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupName: sd-webui-sg
+      GroupName: StableDiffusionSecurityGroup
       GroupDescription: Security group for Stable Diffusion WebUI EC2 Instance
       SecurityGroupIngress:
         - IpProtocol: tcp
@@ -27,7 +27,7 @@ Resources:
             VolumeSize: 100
             VolumeType: gp2
       "Tags" : [
-            {"Key" : "Name", "Value" : "sd-web-ui-cf"},
+            {"Key" : "Name", "Value" : "StableDiffusionInstance"},
         ]
       SecurityGroups:
         - Ref: SecurityGroup
