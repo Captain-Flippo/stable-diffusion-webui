@@ -6,7 +6,7 @@ import os
 import subprocess
 from dataclasses import dataclass
 
-home = Path(__file__).parent
+home = Path(__file__).parent.parent
 os.chdir(home)
 os.mkdir("models")
 os.chdir("models")
