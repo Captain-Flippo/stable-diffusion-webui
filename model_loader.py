@@ -8,7 +8,8 @@ from dataclasses import dataclass
 
 home = Path(__file__).parent.parent
 os.chdir(home)
-os.mkdir("models")
+if "models" not in os.listdir():
+    os.mkdir("models")
 os.chdir("models")
 
 @dataclass
@@ -19,15 +20,15 @@ class Model:
 
 MODELS = [
     Model("f222", "https://huggingface.co/acheong08/f222", "f222.safetensors"),
-    Model("Protogen_x5.8_Official_Release", "https://huggingface.co/darkstorm2150/Protogen_x5.8_Official_Release", "ProtoGen_X5.8.safetensors"),
+    Model("Protogen", "https://huggingface.co/darkstorm2150/Protogen_x5.8_Official_Release", "ProtoGen_X5.8.safetensors"),
 ]
 
 for model in MODELS:
     #start subprocess to download model
     subprocess.run(["git", "clone", "--depth", "1", model.url])
     #copy model to models folder
-    model_path = Path(home, model.name, model.file)
-    subprocess.run(["cp", "-r", model_path, "../stable_diffusion-webui/models/Stable-diffusion/"])
+    model_path = Path(home , "models", model.url.split("/")[-1], model.file)
+    subprocess.run(["cp", model_path, str(Path(home, "stable_diffusion-webui/models/Stable-diffusion/"))])
     #remove model folder
     subprocess.run(["rm", "-rf", model.name])
 
