@@ -1,0 +1,3 @@
+cloudformation:
+  stack_name: "StableDiffusionWebUIStack"
+  template: "template.yaml"
