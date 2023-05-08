@@ -4,9 +4,9 @@ $stackname = "StableDiffusionWebUIStack"
 
 if ($runtype -eq "run") {
     Write-Host "Running..."
-    #aws cloudformation create-stack --stack-name $stackname --template-body file://aws/pipeline_template.yaml
-    .\pipeline\.venv\Scripts\activate
-    python .\pipeline\pipeline.py
+    aws cloudformation create-stack --stack-name $stackname --template-body file://pipeline/cloudformation/template.yaml
+    #.\pipeline\.venv\Scripts\activate
+    #python .\pipeline\pipeline.py
 } elseif ($runtype -eq "stop") {
     Write-Host "Stopping..."
     aws cloudformation delete-stack --stack-name $stackname

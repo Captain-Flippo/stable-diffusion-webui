@@ -29,4 +29,5 @@ cp v2-inference.yaml stable-diffusion-webui/models/Stable-diffusion/v2-1_512-ema
 sudo chown -R ubuntu:ubuntu stable-diffusion-webui/
 
 # start the server as user 'ubuntu'
-sudo -u ubuntu nohup bash stable-diffusion-webui/webui.sh --listen > log.txt
+#sudo -u ubuntu nohup bash stable-diffusion-webui/webui.sh --listen > log.txt
+sudo -u ubuntu nohup bash stable-diffusion-webui/webui.sh --listen --enable-insecure-extension-access > log.txt
