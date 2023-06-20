@@ -35,7 +35,7 @@ Resources:
         'Fn::Base64': |
             #!/bin/bash
             cd /home/ubuntu
-            git clone -b feat/basic-aws-setup https://github.com/Captain-Flippo/stable-diffusion-webui.git
+            git clone -b dev https://github.com/Captain-Flippo/stable-diffusion-webui.git
             cd stable-diffusion-webui
             bash setup.sh
             bash webui.sh
