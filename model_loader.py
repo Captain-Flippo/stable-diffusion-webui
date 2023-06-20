@@ -30,7 +30,7 @@ for model in MODELS:
     subprocess.run(["git", "clone", "--depth", "1", model.url])
     #copy model to models folder
     model_path = Path(home , "models", model.url.split("/")[-1], model.file)
-    subprocess.run(["cp", model_path, "stable_diffusion-webui/models/Stable-diffusion/"])
+    subprocess.run(["cp", model_path, "~/stable_diffusion-webui/models/Stable-diffusion/"])
     if REMOVE_MODELS:
         #remove model folder
         subprocess.run(["rm", "-rf", model.name])
