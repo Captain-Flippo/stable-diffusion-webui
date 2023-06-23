@@ -28,6 +28,9 @@ cp v2-inference.yaml stable-diffusion-webui/models/Stable-diffusion/v2-1_512-ema
 # change ownership of the web UI so that a regular user can start the server
 sudo chown -R ubuntu:ubuntu stable-diffusion-webui/
 
+# download additional models from huggingface
+sudo python3 stable-diffusion-webui/model_loader.py
+
 # start the server as user 'ubuntu'
 #sudo -u ubuntu nohup bash stable-diffusion-webui/webui.sh --listen > log.txt
 sudo -u ubuntu nohup bash stable-diffusion-webui/webui.sh --listen --enable-insecure-extension-access > log.txt
