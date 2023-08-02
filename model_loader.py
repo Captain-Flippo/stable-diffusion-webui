@@ -23,6 +23,7 @@ class Model:
 MODELS = [
     Model("f222", "https://huggingface.co/acheong08/f222", "f222.safetensors"),
     Model("Protogen", "https://huggingface.co/darkstorm2150/Protogen_x5.8_Official_Release", "ProtoGen_X5.8.safetensors"),
+    Model("Cyberrealistic", "https://huggingface.co/ckpt/CyberRealistic", "cyberrealistic_v13.safetensors"),
 ]
 
 for model in MODELS:
