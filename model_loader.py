@@ -6,7 +6,7 @@ import os
 import subprocess
 from dataclasses import dataclass
 
-home = Path(__file__).parent.parent
+home = "/home/ubuntu"
 REMOVE_MODELS = False
 
 os.chdir(home)
@@ -21,8 +21,8 @@ class Model:
     file: str
 
 MODELS = [
-#    Model("f222", "https://huggingface.co/acheong08/f222", "f222.safetensors"),
-#    Model("Protogen", "https://huggingface.co/darkstorm2150/Protogen_x5.8_Official_Release", "ProtoGen_X5.8.safetensors"),
+    Model("f222", "https://huggingface.co/acheong08/f222", "f222.safetensors"),
+    Model("Protogen", "https://huggingface.co/darkstorm2150/Protogen_x5.8_Official_Release", "ProtoGen_X5.8.safetensors"),
     Model("Cyberrealistic", "https://huggingface.co/ckpt/CyberRealistic", "cyberrealistic_v13.safetensors"),
 ]
 
@@ -31,7 +31,7 @@ for model in MODELS:
     subprocess.run(["git", "clone", "--depth", "1", model.url])
     #copy model to models folder
     model_path = Path(home , "models", model.url.split("/")[-1], model.file)
-    subprocess.run(["cp", model_path, "~/stable_diffusion-webui/models/Stable-diffusion/"])
+    subprocess.run(["cp", model_path, home+"/stable_diffusion-webui/models/Stable-diffusion/"])
     if REMOVE_MODELS:
         #remove model folder
         subprocess.run(["rm", "-rf", model.name])
