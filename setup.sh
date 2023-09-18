@@ -30,6 +30,7 @@ sudo chown -R ubuntu:ubuntu stable-diffusion-webui/
 
 # download additional models from huggingface
 sudo python3 stable-diffusion-webui/model_loader.py
+sudo mv models/*/*.safetensors stable-diffusion-webui/models/Stable-diffusion/
 
 # start the server as user 'ubuntu'
 #sudo -u ubuntu nohup bash stable-diffusion-webui/webui.sh --listen > log.txt
