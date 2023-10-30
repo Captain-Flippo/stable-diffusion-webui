@@ -21,8 +21,12 @@ class Model:
     file: str
 
 MODELS = [
-    Model("Protogen", "https://huggingface.co/darkstorm2150/Protogen_x5.8_Official_Release", "ProtoGen_X5.8.safetensors"),
+#    Model("Protogen", "https://huggingface.co/darkstorm2150/Protogen_x5.8_Official_Release", "ProtoGen_X5.8.safetensors"),
     Model("Cyberrealistic", "https://huggingface.co/ckpt/CyberRealistic", "cyberrealistic_v13.safetensors"),
+    Model("Dreamlike-Photoreal", "https://huggingface.co/dreamlike-art/dreamlike-photoreal-2.0", "dreamlike-photoreal-2.0.saftensors"),
+#    Model("Ghibli-Diffusion", "https://huggingface.co/nitrosocke/Ghibli-Diffusion", "ghibli-diffusion-v1.ckpt"),
+#    Model("3D-Render-Style", "https://huggingface.co/goofyai/3d_render_style_xl", "3d_render_style_xl.safetensors"),
+    Model("Elden-Ring-Diffusion", "https://huggingface.co/nitrosocke/elden-ring-diffusion", "eldenRing-v3-pruned.ckpt"),
 ]
 
 for model in MODELS:
