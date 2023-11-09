@@ -31,3 +31,4 @@ torchsde
 safetensors
 psutil
 rich
+httpx==0.24.1
