@@ -28,7 +28,7 @@ MODELS = [
 #    Model("3D-Render-Style", "https://huggingface.co/goofyai/3d_render_style_xl", "3d_render_style_xl.safetensors"),
 #    Model("Elden-Ring-Diffusion", "https://huggingface.co/nitrosocke/elden-ring-diffusion", "eldenRing-v3-pruned.ckpt"),
 #    Model("QR-Code-Monster", "https://huggingface.co/monster-labs/control_v1p_sd15_qrcode_monster", "control_v1p_sd15_qrcode_monster.safetensors"),
-    Model("Realistic-Vision", "https://huggingface.co/SG161222/Realistic_Vision_V5.1_noVAE", ""),
+#    Model("Realistic-Vision", "https://huggingface.co/SG161222/Realistic_Vision_V5.1_noVAE", ""),
 ]
 
 for model in MODELS:
