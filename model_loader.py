@@ -38,10 +38,14 @@ for model in MODELS:
         subprocess.run(["git", "clone", "--depth", "1", model.url])
     if model.host == "civitai":
         os.makedirs(model.name, exist_ok=True)
-        subprocess.run(["wget", "-O", f"{model.name}/{model.name}.safetensors", model.url])
-    #copy model to models folder
-    model_path = Path(home , "models", model.url.split("/")[-1], model.file)
-    subprocess.run(["cp", model_path, home+"/stable_diffusion-webui/models/Stable-diffusion/"+model.file])
+        subprocess.run(["wget", "-O", f"{model.name}/{model.file}", model.url])
+    # Crawl for all models within the model/**/ folders and copy them into the target directory
+    for root, dirs, files in os.walk(home + "/models"):
+        for file in files:
+            if file.endswith(".safetensors") or file.endswith(".ckpt"):
+                source_path = Path(root, file)
+                target_path = Path(home, "stable_diffusion-webui/models/Stable-diffusion", file)
+                subprocess.run(["cp", source_path, target_path])
     if REMOVE_MODELS:
         #remove model folder
         subprocess.run(["rm", "-rf", model.name])
