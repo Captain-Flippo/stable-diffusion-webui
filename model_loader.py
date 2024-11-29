@@ -44,7 +44,7 @@ for model in MODELS:
         for file in files:
             if file.endswith(".safetensors") or file.endswith(".ckpt"):
                 source_path = Path(root, file)
-                target_path = Path(home, "stable_diffusion-webui/models/Stable-diffusion", file)
+                target_path = Path(home, "stable-diffusion-webui/models/Stable-diffusion", file)
                 subprocess.run(["cp", source_path, target_path])
     if REMOVE_MODELS:
         #remove model folder
