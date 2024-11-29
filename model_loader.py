@@ -33,12 +33,22 @@ MODELS = [
 ]
 
 for model in MODELS:
-    #start subprocess to download model
-    if model.host == "huggingface":
-        subprocess.run(["git", "clone", "--depth", "1", model.url])
-    if model.host == "civitai":
-        os.makedirs(model.name, exist_ok=True)
-        subprocess.run(["wget", "-O", f"{model.name}/{model.file}", model.url])
+    # Check if model was already loaded into its designated folder
+    target_path = Path(home, "stable-diffusion-webui/models/Stable-diffusion", model.file)
+    if target_path.exists():
+        print(f"Model {model.name} already exists at {target_path}. Skipping download.")
+        continue
+    
+    # Check if the model folder already exists
+    if not Path(home, "models", model.name).exists():
+        # Start subprocess to download model
+        if model.host == "huggingface":
+            subprocess.run(["git", "clone", "--depth", "1", model.url])
+        elif model.host == "civitai":
+            os.makedirs(model.name, exist_ok=True)
+            subprocess.run(["wget", "-O", f"{model.name}/{model.file}", model.url])
+        print(f"Model {model.name} downloaded.")
+            
     # Crawl for all models within the model/**/ folders and copy them into the target directory
     for root, dirs, files in os.walk(home + "/models"):
         for file in files:
@@ -46,6 +56,7 @@ for model in MODELS:
                 source_path = Path(root, file)
                 target_path = Path(home, "stable-diffusion-webui/models/Stable-diffusion", file)
                 subprocess.run(["cp", source_path, target_path])
+                print(f"Model {file} copied to {target_path}")
     if REMOVE_MODELS:
         #remove model folder
         subprocess.run(["rm", "-rf", model.name])
