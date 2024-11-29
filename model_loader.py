@@ -37,7 +37,8 @@ for model in MODELS:
     if model.host == "huggingface":
         subprocess.run(["git", "clone", "--depth", "1", model.url])
     if model.host == "civitai":
-        subprocess.run(["wget", model.url])
+        os.makedirs(model.name, exist_ok=True)
+        subprocess.run(["wget", "-O", f"{model.name}/{model.name}.safetensors", model.url])
     #copy model to models folder
     model_path = Path(home , "models", model.url.split("/")[-1], model.file)
     subprocess.run(["cp", model_path, home+"/stable_diffusion-webui/models/Stable-diffusion/"+model.file])
