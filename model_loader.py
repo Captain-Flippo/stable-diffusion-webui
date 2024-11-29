@@ -17,23 +17,27 @@ os.chdir("models")
 @dataclass
 class Model:
     name: str
+    host: str
     url: str
-    file: str
 
 MODELS = [
-#    Model("Protogen", "https://huggingface.co/darkstorm2150/Protogen_x5.8_Official_Release", "ProtoGen_X5.8.safetensors"),
-    Model("Cyberrealistic", "https://huggingface.co/ckpt/CyberRealistic", "cyberrealistic_v13.safetensors"),
-#    Model("Dreamlike-Photoreal", "https://huggingface.co/dreamlike-art/dreamlike-photoreal-2.0", "dreamlike-photoreal-2.0.saftensors"),
-#    Model("Ghibli-Diffusion", "https://huggingface.co/nitrosocke/Ghibli-Diffusion", "ghibli-diffusion-v1.ckpt"),
-#    Model("3D-Render-Style", "https://huggingface.co/goofyai/3d_render_style_xl", "3d_render_style_xl.safetensors"),
-#    Model("Elden-Ring-Diffusion", "https://huggingface.co/nitrosocke/elden-ring-diffusion", "eldenRing-v3-pruned.ckpt"),
-#    Model("QR-Code-Monster", "https://huggingface.co/monster-labs/control_v1p_sd15_qrcode_monster", "control_v1p_sd15_qrcode_monster.safetensors"),
-#    Model("Realistic-Vision", "https://huggingface.co/SG161222/Realistic_Vision_V5.1_noVAE", ""),
+    # Model("Protogen", "huggingface", "https://huggingface.co/darkstorm2150/Protogen_x5.8_Official_Release"),
+    Model("Cyberrealistic", "huggingface", "https://huggingface.co/ckpt/CyberRealistic"),
+    # Model("Dreamlike-Photoreal", "huggingface", "https://huggingface.co/dreamlike-art/dreamlike-photoreal-2.0"),
+    # Model("Ghibli-Diffusion", "huggingface", "https://huggingface.co/nitrosocke/Ghibli-Diffusion"),
+    # Model("3D-Render-Style", "huggingface", "https://huggingface.co/goofyai/3d_render_style_xl"),
+    # Model("Elden-Ring-Diffusion", "huggingface", "https://huggingface.co/nitrosocke/elden-ring-diffusion"),
+    # Model("QR-Code-Monster", "huggingface", "https://huggingface.co/monster-labs/control_v1p_sd15_qrcode_monster"),
+    # Model("Realistic-Vision", "huggingface", "https://huggingface.co/SG161222/Realistic_Vision_V5.1_noVAE", ""),
+    Model("BigASP", "civitai", "https://civitai.com/api/download/models/991916?type=Model&format=SafeTensor&size=pruned&fp=fp16")
 ]
 
 for model in MODELS:
     #start subprocess to download model
-    subprocess.run(["git", "clone", "--depth", "1", model.url])
+    if model.host == "huggingface":
+        subprocess.run(["git", "clone", "--depth", "1", model.url])
+    if model.host == "civitai":
+        subprocess.run(["wget", model.url])
     #copy model to models folder
     model_path = Path(home , "models", model.url.split("/")[-1], model.file)
     subprocess.run(["cp", model_path, home+"/stable_diffusion-webui/models/Stable-diffusion/"+model.file])
